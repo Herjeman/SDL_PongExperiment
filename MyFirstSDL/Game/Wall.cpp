@@ -2,9 +2,7 @@
 #include "RectRenderComponent.h"
 
 Wall::Wall(Game* game) : Actor(game)
-{
-	
-}
+{}
 
 void Wall::Init(int xpos, int ypos, int width, int height, FColor color)
 {

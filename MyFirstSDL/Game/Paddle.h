@@ -16,6 +16,5 @@ public:
 
 	int HalfWidth = 0;
 	int HalfHeight = 0;
-
 };
 

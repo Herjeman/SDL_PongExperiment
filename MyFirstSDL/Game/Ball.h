@@ -9,5 +9,6 @@ public:
 	void Update(float deltaTime) override;
 
 	Vector2 Velocity;
+	int Radius = 5;
 };
 

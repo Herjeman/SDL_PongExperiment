@@ -1,5 +1,5 @@
 #include "Game.h"
-//#include "SDL.h" // <- still can't get rid of this in .h file
+//#include "SDL.h"
 #include "iostream"
 #include "Actor.h"
 #include "Component.h"
@@ -108,18 +108,14 @@ void Game::ProcessInput()
 void Game::Update()
 {
 	// Do time stuff
-	while (!SDL_TICKS_PASSED(SDL_GetTicks(), m_TicksCount + 10)); // look into this maybe make your own...
-	float deltaTime = (SDL_GetTicks64() - m_TicksCount) / 1000.f; // stick everything in a time manager?
+	while (!SDL_TICKS_PASSED(SDL_GetTicks(), m_TicksCount + 10));
+	float deltaTime = (SDL_GetTicks64() - m_TicksCount) / 1000.f;
 	m_TicksCount = SDL_GetTicks64();
 
 	if (deltaTime > 0.05f)
 	{
 		deltaTime = 0.05f;
 	}
-
-	int width;
-	int height;
-	SDL_GetWindowSize(m_Window, &width, &height);
 
 	UpdateGameObjects(deltaTime);
 }
@@ -135,6 +131,7 @@ void Game::Render()
 	SDL_SetRenderDrawColor(m_Renderer, 50, 50, 230, 255);
 	SDL_RenderClear(m_Renderer);
 
+	// Draw Gameobjects
 	DrawGameObjects(m_Renderer);
 
 	// Finish
@@ -211,6 +208,18 @@ void Game::ClearGarbageGameObjects()
 	m_GarbageGameObjects.clear();
 }
 
+bool Game::IsRunning()
+{
+	return m_IsRunning;
+}
+
+Vector2 Game::GetWindowDimensions()
+{
+	int x, y;
+	SDL_GetWindowSize(m_Window, &x, &y);
+	return {(float)x, (float)y};
+}
+
 void Game::CreateWalls(int thickness)
 {
 	int width;
@@ -228,16 +237,4 @@ void Game::CreateWalls(int thickness)
 
 	wall = AddGameObject<Wall>();
 	wall->Init(width - thickness * 0.5f, height * 0.5f, thickness, height);
-}
-
-bool Game::IsRunning()
-{
-	return m_IsRunning;
-}
-
-Vector2 Game::GetWindowDimensions()
-{
-	int x, y;
-	SDL_GetWindowSize(m_Window, &x, &y);
-	return {(float)x, (float)y};
 }
