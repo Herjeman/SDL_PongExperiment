@@ -160,9 +160,12 @@
     <ClCompile Include="Game\Paddle.cpp" />
     <ClCompile Include="Core\RectRenderComponent.cpp" />
     <ClCompile Include="Game\Wall.cpp" />
+    <ClCompile Include="Core\Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Actor.h" />
+    <ClInclude Include="Core\Color.h" />
+    <ClInclude Include="Core\Transform.h" />
     <ClInclude Include="Game\Ball.h" />
     <ClInclude Include="Core\Component.h" />
     <ClInclude Include="Game.h" />
@@ -170,6 +173,7 @@
     <ClInclude Include="Game\Paddle.h" />
     <ClInclude Include="Core\RectRenderComponent.h" />
     <ClInclude Include="Game\Wall.h" />
+    <ClInclude Include="Core\Vector2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

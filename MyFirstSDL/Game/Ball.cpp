@@ -1,6 +1,7 @@
 #include "Ball.h"
 #include "RectRenderComponent.h"
 #include "Paddle.h"
+#include "Game.h"
 
 Ball::Ball(Game* game) : Actor(game), Velocity({})
 {
@@ -18,7 +19,7 @@ void Ball::Update(float deltaTime)
 {
 	m_Transform.Position = m_Transform.Position + Velocity * deltaTime;
 
-	Vector2 windowDimensions = GetGame()->GetWindowDimensions();
+	FVector2 windowDimensions = GetGame()->GetWindowDimensions();
 	int border = GetGame()->BorderThickness;
 
 	if (m_Transform.Position.Y - Radius < border || m_Transform.Position.Y + Radius > windowDimensions.Y - border)
@@ -30,7 +31,7 @@ void Ball::Update(float deltaTime)
 		Velocity.X *= -1;
 	}
 
-	Vector2 paddle = GetGame()->GetPaddle()->GetTransform().Position;
+	FVector2 paddle = GetGame()->GetPaddle()->GetTransform().Position;
 	int paddleHalfHeight = GetGame()->GetPaddle()->HalfHeight;
 	int paddleHalfWidth = GetGame()->GetPaddle()->HalfWidth;
 

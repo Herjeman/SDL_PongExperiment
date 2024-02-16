@@ -1,10 +1,6 @@
 #include "Game.h"
-//#include "SDL.h"
+#include "SDL.h"
 #include "iostream"
-#include "Actor.h"
-#include "Component.h"
-#include "GameObject.h"
-#include "RectRenderComponent.h"
 #include "Wall.h"
 #include "Paddle.h"
 #include "Ball.h"
@@ -110,7 +106,7 @@ void Game::Update()
 	// Do time stuff
 	while (!SDL_TICKS_PASSED(SDL_GetTicks(), m_TicksCount + 10));
 	float deltaTime = (SDL_GetTicks64() - m_TicksCount) / 1000.f;
-	m_TicksCount = SDL_GetTicks64();
+	m_TicksCount = SDL_GetTicks();
 
 	if (deltaTime > 0.05f)
 	{
@@ -213,7 +209,7 @@ bool Game::IsRunning()
 	return m_IsRunning;
 }
 
-Vector2 Game::GetWindowDimensions()
+FVector2 Game::GetWindowDimensions()
 {
 	int x, y;
 	SDL_GetWindowSize(m_Window, &x, &y);

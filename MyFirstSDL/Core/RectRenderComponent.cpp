@@ -1,5 +1,7 @@
 #include "RectRenderComponent.h"
 #include "Actor.h"
+#include "SDL_rect.h"
+#include "SDL_render.h"
 
 RectRenderComponent::RectRenderComponent(Actor* owner, int updateOrder) : Component(owner, updateOrder),
 	Width(10), Height(10), Color(FColor{245,40,145,255})

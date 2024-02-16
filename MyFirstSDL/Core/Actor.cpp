@@ -1,5 +1,6 @@
 #include "Actor.h"
 #include "Component.h"
+#include "SDL_log.h"
 
 Actor::Actor(Game* game) : GameObject(game)
 {

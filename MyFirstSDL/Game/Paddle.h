@@ -11,7 +11,7 @@ public:
 	void AddDownInput();
 	void Update(float deltaTime) override;
 
-	Vector2 Direction;
+	FVector2 Direction;
 	int Speed;
 
 	int HalfWidth = 0;

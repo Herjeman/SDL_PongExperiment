@@ -1,5 +1,6 @@
 #pragma once
 #include "Actor.h"
+#include "Color.h"
 
 class Wall : public Actor
 {

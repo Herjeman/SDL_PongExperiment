@@ -1,6 +1,6 @@
 #pragma once
 #include "Component.h"
-#include "Game.h" // only for structs, move struct defs
+#include "Color.h"
 
 class RectRenderComponent : public Component
 {
@@ -16,6 +16,6 @@ public:
 	int Width;
 	int Height;
 
-	SDL_Rect GetRect();
+	struct SDL_Rect GetRect();
 };
 

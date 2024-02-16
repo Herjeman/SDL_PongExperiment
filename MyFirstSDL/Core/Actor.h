@@ -1,6 +1,6 @@
 #pragma once
 #include "GameObject.h"
-#include "Game.h" // needs because transform, move all structs to minimal.h or smth?
+#include "Transform.h"
 #include <vector>
 
 class Actor : public GameObject
@@ -23,11 +23,11 @@ public:
 	void RemoveComponent(class Component* component);
 
 	// Getters and Setters
-	Transform GetTransform() const { return m_Transform; }
-	void SetTransform(Transform newTransform) { m_Transform = newTransform; }
+	FTransform GetTransform() const { return m_Transform; }
+	void SetTransform(FTransform newTransform) { m_Transform = newTransform; }
 
 protected:
-	Transform m_Transform{};
+	FTransform m_Transform;
 private:
 	std::vector<class Component*> m_Components;
 };

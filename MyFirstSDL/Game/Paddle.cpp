@@ -1,5 +1,6 @@
 #include "Paddle.h"
 #include "RectRenderComponent.h"
+#include "Game.h"
 
 Paddle::Paddle(Game* game) : Actor(game),
 Direction({}), Speed(150)
@@ -34,7 +35,7 @@ void Paddle::Update(float deltaTime)
 	m_Transform.Position = m_Transform.Position + Direction * Speed * deltaTime;
 	Direction = {};
 
-	Vector2 windowDimensions = GetGame()->GetWindowDimensions();
+	FVector2 windowDimensions = GetGame()->GetWindowDimensions();
 	int border = GetGame()->BorderThickness;
 
 	if (m_Transform.Position.Y - HalfHeight < 0 + border)
