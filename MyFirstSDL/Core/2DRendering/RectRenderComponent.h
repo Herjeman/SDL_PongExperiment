@@ -1,6 +1,6 @@
 #pragma once
-#include "Component.h"
-#include "Color.h"
+#include "Core/Component.h"
+#include "Core/Color.h"
 
 class RectRenderComponent : public Component
 {

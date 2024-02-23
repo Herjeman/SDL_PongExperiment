@@ -1,5 +1,5 @@
+#include "Core/2DRendering/RectRenderComponent.h"
 #include "Ball.h"
-#include "RectRenderComponent.h"
 #include "Paddle.h"
 #include "Game.h"
 
@@ -12,7 +12,7 @@ Ball::Ball(Game* game) : Actor(game), Velocity({})
 	rect->Height = Radius * 2;;
 	rect->Width = Radius * 2;;
 	rect->Color = {240, 240, 0, 255};
-	Velocity = { -200.f, 235.f };
+	Velocity = { -220.f, 225.f };
 }
 
 void Ball::Update(float deltaTime)

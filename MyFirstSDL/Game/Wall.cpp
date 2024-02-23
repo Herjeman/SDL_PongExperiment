@@ -1,5 +1,5 @@
 #include "Wall.h"
-#include "RectRenderComponent.h"
+#include "Core/2DRendering/RectRenderComponent.h"
 
 Wall::Wall(Game* game) : Actor(game)
 {}

@@ -1,9 +1,13 @@
 #include "Paddle.h"
-#include "RectRenderComponent.h"
+#include "Core/2DRendering/RectRenderComponent.h"
 #include "Game.h"
 
 Paddle::Paddle(Game* game) : Actor(game),
 Direction({}), Speed(150)
+{}
+
+Paddle::Paddle(Game * game, int speed) : Actor(game),
+Direction({}), Speed(speed)
 {}
 
 void Paddle::Init(int xpos, int ypos, int width, int height, int speed)

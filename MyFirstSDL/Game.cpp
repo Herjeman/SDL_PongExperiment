@@ -1,9 +1,15 @@
 #include "Game.h"
-#include "SDL.h"
 #include "iostream"
-#include "Wall.h"
-#include "Paddle.h"
-#include "Ball.h"
+
+#include "SDL.h"
+
+#include "Core/2DRendering/SpriteRenderer.h"
+#include "Core/2DRendering/SpriteRenderComponent.h"
+#include "Core/Actor.h"
+
+#include "Game/Wall.h"
+#include "Game/Paddle.h"
+#include "Game/Ball.h"
 
 Game::Game()
 {}
@@ -35,13 +41,9 @@ bool Game::Init(const char* title, int xpos, int ypos, int width, int height, bo
 	}
 	std::cout << "Window created... \n";
 
-	m_Renderer = SDL_CreateRenderer(m_Window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-	if (!m_Renderer)
-	{
-		std::cout << "Renderer creation failed " << std::endl;
-		return false;
-	}
-	std::cout << "Renderer initialized... " << std::endl;
+	m_SpriteRenderer = new SpriteRenderer(this);
+
+	LoadData();
 	
 	return true;
 }
@@ -59,6 +61,11 @@ void Game::Run()
 	m_Paddle->Init(50, 300, 16, 60); // not sure if init is the way to go... maybe just do definition in .h file for now
 
 	m_Ball = AddGameObject<Ball>();
+
+	Actor* image = AddGameObject<Actor>();
+	image->SetTransform({ {300, 400},{0.5f, 0.5f}, 0});
+	SpriteRenderComponent* comp = image->AddComponent<SpriteRenderComponent>(150);
+	comp->SetTexture(m_SpriteRenderer->GetTexture("Sprites/MySprite.png"));
 
 	m_IsRunning = true;
 	while (m_IsRunning)
@@ -123,23 +130,21 @@ void Game::GenerateOutput()
 
 void Game::Render()
 {
-	// Setup
-	SDL_SetRenderDrawColor(m_Renderer, 50, 50, 230, 255);
-	SDL_RenderClear(m_Renderer);
+	m_SpriteRenderer->PreRender({ 50, 50, 230, 255 });
 
-	// Draw Gameobjects
-	DrawGameObjects(m_Renderer);
+	//DrawGameObjects(m_SpriteRenderer->GetRenderer());
 
-	// Finish
-	SDL_RenderPresent(m_Renderer);
+	m_SpriteRenderer->DrawSprites();
+	m_SpriteRenderer->PostRender();
 }
 
 void Game::Clean()
 {
 	RemoveAllGameObjects();
 
+	delete m_SpriteRenderer;
 	SDL_DestroyWindow(m_Window);
-	SDL_DestroyRenderer(m_Renderer);
+
 
 	std::cout << "Game cleaned" << std::endl;
 }
@@ -157,7 +162,7 @@ void Game::DrawGameObjects(SDL_Renderer* renderer)
 {
 	for (size_t i = 0; i < m_GameObjects.size(); i++)
 	{
-		m_GameObjects[i]->Draw(m_Renderer);
+		m_GameObjects[i]->Draw(renderer);
 	}
 }
 
@@ -202,6 +207,11 @@ void Game::ClearGarbageGameObjects()
 		delete object;
 	}
 	m_GarbageGameObjects.clear();
+}
+
+void Game::LoadData()
+{
+	m_SpriteRenderer->LoadTexture("Sprites/MySprite.png");
 }
 
 bool Game::IsRunning()

@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <map>
 
 
 class Game
@@ -13,7 +14,10 @@ public:
 	void Run();
 
 	bool IsRunning();
+
+	struct SDL_Window* GetWindow() { return m_Window; }
 	struct FVector2 GetWindowDimensions();
+	class SpriteRenderer* GetSpriteRenderer() { return m_SpriteRenderer; }
 	class Paddle* GetPaddle()const { return m_Paddle; }
 
 	int BorderThickness = 16;
@@ -33,26 +37,36 @@ private:
 		return temp;
 	}
 
+	template<class T, typename ... Args>
+	T* AddGameObject(Args... args)
+	{
+		T* temp = new T(this, args...); // <- Do something with perfect forwarding here std::forward<Args>(args) isch? No, maybe just get rid of this completely...
+		m_GameObjects.push_back(temp);
+		return temp;
+	}
+
 	void UpdateGameObjects(float deltaTime);
 	void DrawGameObjects(struct SDL_Renderer* renderer);
 	void RemoveGameObject(class GameObject* object);
 	void RemoveAllGameObjects();
 	void ClearGarbageGameObjects();
 
+	void LoadData();
+
 	void CreateWalls(int thickness);
 
 private:
 	bool m_IsRunning = false;
 	struct SDL_Window* m_Window = nullptr;
-	struct SDL_Renderer* m_Renderer = nullptr;
 	int m_TicksCount = 0;
 
-	class std::vector<class GameObject*> m_GameObjects;
-	class std::vector<class GameObject*> m_PendingGameObjects;
-	class std::vector<class GameObject*> m_GarbageGameObjects;
+	class SpriteRenderer* m_SpriteRenderer = nullptr;
+
+	std::vector<class GameObject*> m_GameObjects;
+	std::vector<class GameObject*> m_PendingGameObjects;
+	std::vector<class GameObject*> m_GarbageGameObjects;
 
 	class Paddle* m_Paddle;
 	class Ball* m_Ball;
-
 };
 
