@@ -1,5 +1,7 @@
 #pragma once
 
+// Not sure what to do with this class currently, I imagine it should be related to memory management and stuff
+
 class GameObject
 {
 public:
@@ -22,7 +24,7 @@ public:
 	EGameObjectState GetState() { return m_State; }
 	void SetState(EGameObjectState newState) { m_State = newState; }
 
-	Game* GetGame() { return m_Game; }
+	class Game* GetGame() { return m_Game; }
 
 private:
 	EGameObjectState m_State;

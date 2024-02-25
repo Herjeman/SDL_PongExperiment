@@ -1,14 +1,13 @@
 #include "SpriteRenderComponent.h"
 #include "Core/Actor.h"
 #include "Game.h"
-#include "SpriteRenderer.h"
+#include "Renderer2D.h"
 #include "SDL.h"
 #include "SDL_image.h"
 
-SpriteRenderComponent::SpriteRenderComponent(Actor* owner, int updateOrder) : Component(owner, updateOrder),
-m_Texture(nullptr), m_DrawOrder(updateOrder), m_TextureWidth(0), m_TextureHeight(0)
+SpriteRenderComponent::SpriteRenderComponent(Actor* owner, int updateOrder) : RenderComponent2D(owner, updateOrder),
+m_Texture(nullptr), m_TextureWidth(0), m_TextureHeight(0)
 {
-	owner->GetGame()->GetSpriteRenderer()->AddSprite(this); // problem: How set draw order before this call? Not like this
 }
 
 SpriteRenderComponent::~SpriteRenderComponent()
@@ -43,10 +42,9 @@ void SpriteRenderComponent::SetTexture(SDL_Texture* texture)
 {
 	m_Texture = texture;
 	SDL_QueryTexture(texture, nullptr, nullptr, &m_TextureWidth, &m_TextureWidth);
-
 }
 
-float SpriteRenderComponent::ToDegrees(float radians)
+float SpriteRenderComponent::ToDegrees(float radians) // actully belongs in some math library
 {
 	return radians * (180.f/ 3.141592653589793238463);
 }

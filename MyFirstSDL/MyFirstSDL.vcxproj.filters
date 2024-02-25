@@ -48,7 +48,10 @@
     <ClCompile Include="Core\2DRendering\SpriteRenderComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Core\2DRendering\SpriteRenderer.cpp">
+    <ClCompile Include="Core\2DRendering\Renderer2D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\2DRendering\RenderComponent2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -89,7 +92,10 @@
     <ClInclude Include="Core\2DRendering\SpriteRenderComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core\2DRendering\SpriteRenderer.h">
+    <ClInclude Include="Core\2DRendering\Renderer2D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\2DRendering\RenderComponent2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

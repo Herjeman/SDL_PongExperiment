@@ -1,11 +1,11 @@
-#include "SpriteRenderer.h"
+#include "Renderer2D.h"
 #include "Core/2DRendering/SpriteRenderComponent.h"
 #include "Core/Color.h"
 #include "Game.h"
 #include "SDL_render.h"
 #include "SDL_image.h"
 
-SpriteRenderer::SpriteRenderer(Game* game)
+Renderer2D::Renderer2D(Game* game)
 {
 	if (!game || !game->GetWindow())
 	{
@@ -26,37 +26,37 @@ SpriteRenderer::SpriteRenderer(Game* game)
 	IMG_Init(IMG_INIT_PNG);
 }
 
-SpriteRenderer::~SpriteRenderer()
+Renderer2D::~Renderer2D()
 {
 	SDL_DestroyRenderer(m_Renderer);
 	SDL_Log("Renderer destroyed");
 }
 
-void SpriteRenderer::PreRender(FColor color)
+void Renderer2D::PreRender(FColor color)
 {
 	SDL_SetRenderDrawColor(m_Renderer, color.R, color.G, color.B, color.A);
 	SDL_RenderClear(m_Renderer);
 }
 
-void SpriteRenderer::DrawSprites()
+void Renderer2D::Render()
 {
-	for (SpriteRenderComponent* sprite : m_SpriteComponents)
+	for (RenderComponent2D* sprite : m_RenderComponents)
 	{
 		sprite->Draw(m_Renderer);
 	}
 }
 
-void SpriteRenderer::PostRender()
+void Renderer2D::PostRender()
 {
 	SDL_RenderPresent(m_Renderer);
 }
 
-void SpriteRenderer::AddSprite(SpriteRenderComponent* sprite)
+void Renderer2D::AddRenderComponent(RenderComponent2D* sprite)
 {
 	int drawOrder = sprite->GetDrawOrder();
-	auto iter = m_SpriteComponents.begin();
+	auto iter = m_RenderComponents.begin();
 
-	for (; iter != m_SpriteComponents.end(); ++iter)
+	for (; iter != m_RenderComponents.end(); ++iter)
 	{
 		if (drawOrder < (*iter)->GetDrawOrder())
 		{
@@ -64,13 +64,13 @@ void SpriteRenderer::AddSprite(SpriteRenderComponent* sprite)
 		}
 	}
 
-	m_SpriteComponents.insert(iter, sprite);
+	m_RenderComponents.insert(iter, sprite);
 }
 
-bool SpriteRenderer::RemoveSprite(SpriteRenderComponent* sprite)
+bool Renderer2D::RemoveRenderComponent(RenderComponent2D* sprite)
 {
-	auto iter = m_SpriteComponents.begin();
-	for (; iter != m_SpriteComponents.end(); ++iter)
+	auto iter = m_RenderComponents.begin();
+	for (; iter != m_RenderComponents.end(); ++iter)
 	{
 		if (sprite == (*iter))
 		{
@@ -78,26 +78,26 @@ bool SpriteRenderer::RemoveSprite(SpriteRenderComponent* sprite)
 		}
 	}
 
-	if (iter == m_SpriteComponents.end())
+	if (iter == m_RenderComponents.end())
 	{
 		return false;
 	}
 
-	m_SpriteComponents.erase(iter);
+	m_RenderComponents.erase(iter);
 	return true;
 }
 
-bool SpriteRenderer::UpdateSpriteDrawOrder(SpriteRenderComponent* sprite)
+bool Renderer2D::UpdateSpriteDrawOrder(RenderComponent2D* sprite)
 {
-	if (RemoveSprite(sprite))
+	if (RemoveRenderComponent(sprite))
 	{
-		AddSprite(sprite);
+		AddRenderComponent(sprite);
 		return true;
 	}
 	return false;
 }
 
-SDL_Texture* SpriteRenderer::LoadTexture(const char* path)
+SDL_Texture* Renderer2D::LoadTexture(const char* path)
 {
 	SDL_Surface* surface = IMG_Load(path);
 	if (!surface)
@@ -116,7 +116,7 @@ SDL_Texture* SpriteRenderer::LoadTexture(const char* path)
 	return texture;
 }
 
-SDL_Texture* SpriteRenderer::GetTexture(const char* path)
+SDL_Texture* Renderer2D::GetTexture(const char* path)
 {
 	if (m_TextureMap.find(path) != m_TextureMap.end())
 	{

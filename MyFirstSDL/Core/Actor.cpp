@@ -31,14 +31,6 @@ void Actor::UpdateComponents(float deltaTime)
 	}
 }
 
-void Actor::Draw(SDL_Renderer* renderer)
-{
-	for (Component* component : m_Components)
-	{
-		component->Draw(renderer);
-	}
-}
-
 void Actor::RemoveComponent(Component* component) // Destroy components here? Make this return false if no such component?
 {
 	for (size_t i = 0; i < m_Components.size(); i++)

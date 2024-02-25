@@ -3,7 +3,8 @@
 
 #include "SDL.h"
 
-#include "Core/2DRendering/SpriteRenderer.h"
+#include "Core/2DRendering/Renderer2D.h"
+#include "Core/2DRendering/RenderComponent2D.h"
 #include "Core/2DRendering/SpriteRenderComponent.h"
 #include "Core/Actor.h"
 
@@ -41,7 +42,7 @@ bool Game::Init(const char* title, int xpos, int ypos, int width, int height, bo
 	}
 	std::cout << "Window created... \n";
 
-	m_SpriteRenderer = new SpriteRenderer(this);
+	m_Renderer2D = new Renderer2D(this);
 
 	LoadData();
 	
@@ -59,13 +60,14 @@ void Game::Run()
 
 	m_Paddle = AddGameObject<Paddle>();
 	m_Paddle->Init(50, 300, 16, 60); // not sure if init is the way to go... maybe just do definition in .h file for now
-
 	m_Ball = AddGameObject<Ball>();
+	m_Ball->GetComponent<RenderComponent2D>()->SetDrawOrder(18);
 
 	Actor* image = AddGameObject<Actor>();
-	image->SetTransform({ {300, 400},{0.5f, 0.5f}, 0});
+	image->SetTransform({ {300, 350},{2.f, 2.f}, 0.2});
 	SpriteRenderComponent* comp = image->AddComponent<SpriteRenderComponent>(150);
-	comp->SetTexture(m_SpriteRenderer->GetTexture("Sprites/MySprite.png"));
+	comp->SetTexture(m_Renderer2D->GetTexture("Sprites/MySprite.png"));
+	comp->SetDrawOrder(16);
 
 	m_IsRunning = true;
 	while (m_IsRunning)
@@ -130,19 +132,19 @@ void Game::GenerateOutput()
 
 void Game::Render()
 {
-	m_SpriteRenderer->PreRender({ 50, 50, 230, 255 });
+	m_Renderer2D->PreRender({ 50, 50, 230, 255 });
 
 	//DrawGameObjects(m_SpriteRenderer->GetRenderer());
 
-	m_SpriteRenderer->DrawSprites();
-	m_SpriteRenderer->PostRender();
+	m_Renderer2D->Render();
+	m_Renderer2D->PostRender();
 }
 
 void Game::Clean()
 {
 	RemoveAllGameObjects();
 
-	delete m_SpriteRenderer;
+	delete m_Renderer2D;
 	SDL_DestroyWindow(m_Window);
 
 
@@ -211,7 +213,7 @@ void Game::ClearGarbageGameObjects()
 
 void Game::LoadData()
 {
-	m_SpriteRenderer->LoadTexture("Sprites/MySprite.png");
+	m_Renderer2D->LoadTexture("Sprites/MySprite.png");
 }
 
 bool Game::IsRunning()

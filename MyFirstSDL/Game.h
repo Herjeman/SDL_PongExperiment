@@ -17,7 +17,7 @@ public:
 
 	struct SDL_Window* GetWindow() { return m_Window; }
 	struct FVector2 GetWindowDimensions();
-	class SpriteRenderer* GetSpriteRenderer() { return m_SpriteRenderer; }
+	class Renderer2D* GetRenderer() { return m_Renderer2D; }
 	class Paddle* GetPaddle()const { return m_Paddle; }
 
 	int BorderThickness = 16;
@@ -60,7 +60,7 @@ private:
 	struct SDL_Window* m_Window = nullptr;
 	int m_TicksCount = 0;
 
-	class SpriteRenderer* m_SpriteRenderer = nullptr;
+	class Renderer2D* m_Renderer2D = nullptr;
 
 	std::vector<class GameObject*> m_GameObjects;
 	std::vector<class GameObject*> m_PendingGameObjects;

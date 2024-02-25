@@ -11,7 +11,6 @@ public:
 
 	virtual void Update(float deltaTime) override;
 	void UpdateComponents(float deltaTime);
-	void Draw(struct SDL_Renderer* renderer) override;
 
 	template<typename T>
 	T* AddComponent() {
@@ -35,9 +34,27 @@ public:
 	// Getters and Setters
 	FTransform GetTransform() const { return m_Transform; }
 	void SetTransform(FTransform newTransform) { m_Transform = newTransform; }
+	
+	template<typename T>
+	T* GetComponent();
+
 
 protected:
 	FTransform m_Transform;
 private:
 	std::vector<class Component*> m_Components;
 };
+
+template<class T>
+inline T* Actor::GetComponent()
+{
+	for (Component* comp : m_Components)
+	{
+		T* out = dynamic_cast<T*>(comp);
+		if (out)
+		{
+			return out;
+		}
+	}
+	return nullptr;
+}

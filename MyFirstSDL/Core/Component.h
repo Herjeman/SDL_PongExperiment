@@ -6,7 +6,6 @@ public:
 	virtual ~Component();
 
 	virtual void Update(float deltaTime);
-	virtual void Draw(struct SDL_Renderer* renderer) { return; }
 
 	// Getters and Setters
 	int GetUpdateOrder() const { return m_UpdateOrder; }

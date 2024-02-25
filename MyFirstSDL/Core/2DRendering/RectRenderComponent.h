@@ -1,8 +1,8 @@
 #pragma once
-#include "Core/Component.h"
+#include "Core/2DRendering/RenderComponent2D.h"
 #include "Core/Color.h"
 
-class RectRenderComponent : public Component
+class RectRenderComponent : public RenderComponent2D
 {
 public:
 	RectRenderComponent(class Actor* owner, int updateOrder = 100);
