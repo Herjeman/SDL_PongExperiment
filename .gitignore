@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/MyFirstSDL/SDL2.dll
+/MyFirstSDL/SDL2_image.dll
