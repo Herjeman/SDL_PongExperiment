@@ -53,6 +53,7 @@ private:
 	int m_TicksCount = 0;
 
 	class Renderer2D* m_Renderer2D = nullptr;
+	class AssetManager* m_AssetManager = nullptr;
 
 	std::vector<class GameObject*> m_GameObjects;
 	std::vector<class GameObject*> m_PendingGameObjects;

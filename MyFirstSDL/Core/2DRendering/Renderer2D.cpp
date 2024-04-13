@@ -51,9 +51,9 @@ void Renderer2D::PostRender()
 	SDL_RenderPresent(m_Renderer);
 }
 
-void Renderer2D::AddRenderComponent(RenderComponent2D* sprite)
+void Renderer2D::AddRenderComponent(RenderComponent2D* renderComponent)
 {
-	int drawOrder = sprite->GetDrawOrder();
+	int drawOrder = renderComponent->GetDrawOrder();
 	auto iter = m_RenderComponents.begin();
 
 	for (; iter != m_RenderComponents.end(); ++iter)
@@ -64,15 +64,15 @@ void Renderer2D::AddRenderComponent(RenderComponent2D* sprite)
 		}
 	}
 
-	m_RenderComponents.insert(iter, sprite);
+	m_RenderComponents.insert(iter, renderComponent);
 }
 
-bool Renderer2D::RemoveRenderComponent(RenderComponent2D* sprite)
+bool Renderer2D::RemoveRenderComponent(RenderComponent2D* component)
 {
 	auto iter = m_RenderComponents.begin();
 	for (; iter != m_RenderComponents.end(); ++iter)
 	{
-		if (sprite == (*iter))
+		if (component == (*iter))
 		{
 			break;
 		}
@@ -95,34 +95,4 @@ bool Renderer2D::UpdateSpriteDrawOrder(RenderComponent2D* sprite)
 		return true;
 	}
 	return false;
-}
-
-SDL_Texture* Renderer2D::LoadTexture(const char* path)
-{
-	SDL_Surface* surface = IMG_Load(path);
-	if (!surface)
-	{
-		SDL_Log("Failed to load texture file: %s", path);
-		return nullptr;
-	}
-
-	SDL_Texture* texture = SDL_CreateTextureFromSurface(m_Renderer, surface);
-	SDL_FreeSurface(surface);
-	if (!texture)
-	{
-		SDL_Log("Failed to convert surface to texture for %s", path);
-		return nullptr;
-	}
-	return texture;
-}
-
-SDL_Texture* Renderer2D::GetTexture(const char* path)
-{
-	if (m_TextureMap.find(path) != m_TextureMap.end())
-	{
-		return m_TextureMap.at(path);
-	}
-
-	m_TextureMap[path] = LoadTexture(path);
-	return m_TextureMap.at(path);
 }

@@ -16,9 +16,6 @@ public:
 	bool RemoveRenderComponent(class RenderComponent2D* sprite);
 	bool UpdateSpriteDrawOrder(class RenderComponent2D* sprite);
 
-	struct SDL_Texture* LoadTexture(const char* path);
-	struct SDL_Texture* GetTexture(const char* path);
-
 	struct SDL_Renderer* GetRenderer(){ return m_Renderer; }
 
 
@@ -27,7 +24,5 @@ private:
 	class Game* m_Game = nullptr;
 	struct SDL_Renderer* m_Renderer = nullptr;
 	std::vector<class RenderComponent2D*> m_RenderComponents;
-	std::unordered_map<const char*, struct SDL_Texture*> m_TextureMap;
-
 };
 

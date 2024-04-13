@@ -1,7 +1,8 @@
 #include "Game.h"
-#include "iostream"
+#include <iostream>
 
-#include "SDL.h"
+#include <SDL.h>
+#include <tuple>
 
 #include "Core/Input/InputManager.h"
 
@@ -9,13 +10,17 @@
 #include "Core/2DRendering/RenderComponent2D.h"
 #include "Core/2DRendering/SpriteRenderComponent.h"
 #include "Core/GameFramework/Actor.h"
+#include "Core/AssetManagement/AssetManager.h"
 
 #include "Game/Wall.h"
 #include "Game/Paddle.h"
 #include "Game/Ball.h"
 
 Game::Game()
-{}
+{
+	m_Paddle = {};
+	m_Ball = {};
+}
 
 Game::~Game()
 {}
@@ -45,6 +50,7 @@ bool Game::Init(const char* title, int xpos, int ypos, int width, int height, bo
 	std::cout << "Window created... \n";
 
 	m_Renderer2D = new Renderer2D(this);
+	m_AssetManager = new AssetManager();
 
 	LoadData();
 	
@@ -61,14 +67,15 @@ void Game::Run()
 	CreateWalls(BorderThickness);
 
 	m_Paddle = AddGameObject<Paddle>();
-	m_Paddle->Init(50, 300, 16, 60); // not sure if init is the way to go... maybe just do definition in .h file for now
+	m_Paddle->Init(50, 300, 16, 60); // not sure if init is the way to go... maybe just do definition in .h file for now. (Typesystem when?)
 	m_Ball = AddGameObject<Ball>();
 	m_Ball->GetComponent<RenderComponent2D>()->SetDrawOrder(18);
 
 	Actor* image = AddGameObject<Actor>();
 	image->SetTransform({ {300, 350},{2.f, 2.f}, 0.2});
+
 	SpriteRenderComponent* comp = image->AddComponent<SpriteRenderComponent>(150);
-	comp->SetTexture(m_Renderer2D->GetTexture("Sprites/MySprite.png"));
+	comp->SetTexture(m_AssetManager->GetTexture("id"));
 	comp->SetDrawOrder(16);
 
 	m_IsRunning = true;
@@ -135,6 +142,7 @@ void Game::Clean()
 	RemoveAllGameObjects();
 
 	delete m_Renderer2D;
+	delete m_AssetManager;
 	SDL_DestroyWindow(m_Window);
 
 
@@ -203,7 +211,10 @@ void Game::ClearGarbageGameObjects()
 
 void Game::LoadData()
 {
-	m_Renderer2D->LoadTexture("Sprites/MySprite.png");
+	std::vector<std::tuple<std::string, const char*>> textureLoadData;
+	
+	textureLoadData.push_back({ "id", "Game/Assets/Character01.png"});
+	m_AssetManager->LoadTextures(textureLoadData, *m_Renderer2D->GetRenderer());
 }
 
 bool Game::IsRunning()

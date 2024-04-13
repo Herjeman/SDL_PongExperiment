@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Core\2DRendering\AnimatedSpriteComponent.cpp" />
     <ClCompile Include="Core\AssetManagement\AssetManager.cpp" />
     <ClCompile Include="Core\GameFramework\Actor.cpp" />
     <ClCompile Include="Game\Ball.cpp" />
@@ -168,6 +169,7 @@
     <ClCompile Include="Core\2DRendering\RenderComponent2D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Core\2DRendering\AnimatedSpriteComponent.h" />
     <ClInclude Include="Core\AssetManagement\AssetManager.h" />
     <ClInclude Include="Core\GameFramework\Actor.h" />
     <ClInclude Include="Core\Utilities\Color.h" />

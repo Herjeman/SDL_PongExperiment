@@ -44,7 +44,7 @@ void SpriteRenderComponent::SetTexture(SDL_Texture* texture)
 	SDL_QueryTexture(texture, nullptr, nullptr, &m_TextureWidth, &m_TextureWidth);
 }
 
-float SpriteRenderComponent::ToDegrees(float radians) // actully belongs in some math library
+float SpriteRenderComponent::ToDegrees(float radians) // might actually belongs in some math library
 {
 	return radians * (180.f/ 3.141592653589793238463);
 }
