@@ -3,10 +3,12 @@
 
 #include "SDL.h"
 
+#include "Core/Input/InputManager.h"
+
 #include "Core/2DRendering/Renderer2D.h"
 #include "Core/2DRendering/RenderComponent2D.h"
 #include "Core/2DRendering/SpriteRenderComponent.h"
-#include "Core/Actor.h"
+#include "Core/GameFramework/Actor.h"
 
 #include "Game/Wall.h"
 #include "Game/Paddle.h"
@@ -95,18 +97,9 @@ void Game::ProcessInput()
 		}
 	}
 
-	const Uint8* state = SDL_GetKeyboardState(nullptr);
-	if (state[SDL_SCANCODE_ESCAPE])
+	if (InputManager::Get().GetKeyDown(SDL_SCANCODE_ESCAPE))
 	{
 		m_IsRunning = false;
-	}
-	if (state[SDL_SCANCODE_W] || state[SDL_SCANCODE_UP])
-	{
-		m_Paddle->AddUpInput();
-	}
-	if (state[SDL_SCANCODE_S] || state[SDL_SCANCODE_DOWN])
-	{
-		m_Paddle->AddDownInput();
 	}
 }
 
@@ -133,9 +126,6 @@ void Game::GenerateOutput()
 void Game::Render()
 {
 	m_Renderer2D->PreRender({ 50, 50, 230, 255 });
-
-	//DrawGameObjects(m_SpriteRenderer->GetRenderer());
-
 	m_Renderer2D->Render();
 	m_Renderer2D->PostRender();
 }

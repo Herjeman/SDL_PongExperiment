@@ -1,5 +1,5 @@
 #include "RenderComponent2D.h"
-#include "Core/Actor.h"
+#include "Core/GameFramework/Actor.h"
 #include "Renderer2D.h"
 #include "Game.h"
 

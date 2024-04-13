@@ -1,5 +1,5 @@
 #include "RectRenderComponent.h"
-#include "Core/Actor.h"
+#include "Core/GameFramework/Actor.h"
 #include "SDL_rect.h"
 #include "SDL_render.h"
 

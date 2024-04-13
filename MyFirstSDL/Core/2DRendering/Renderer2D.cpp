@@ -1,6 +1,6 @@
 #include "Renderer2D.h"
 #include "Core/2DRendering/SpriteRenderComponent.h"
-#include "Core/Color.h"
+#include "Core/Utilities/Color.h"
 #include "Game.h"
 #include "SDL_render.h"
 #include "SDL_image.h"

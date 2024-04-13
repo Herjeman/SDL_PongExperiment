@@ -1,5 +1,5 @@
 #include "SpriteRenderComponent.h"
-#include "Core/Actor.h"
+#include "Core/GameFramework/Actor.h"
 #include "Game.h"
 #include "Renderer2D.h"
 #include "SDL.h"

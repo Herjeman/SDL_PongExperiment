@@ -1,5 +1,5 @@
 #pragma once
-#include "Core/Component.h"
+#include "Core/GameFramework/Component.h"
 
 class RenderComponent2D : public Component
 {

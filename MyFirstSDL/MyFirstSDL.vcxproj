@@ -151,35 +151,37 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Core\Actor.cpp" />
+    <ClCompile Include="Core\GameFramework\Actor.cpp" />
     <ClCompile Include="Game\Ball.cpp" />
-    <ClCompile Include="Core\Component.cpp" />
+    <ClCompile Include="Core\GameFramework\Component.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Core\GameObject.cpp" />
+    <ClCompile Include="Core\GameFramework\GameObject.cpp" />
+    <ClCompile Include="Core\Input\InputManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Game\Paddle.cpp" />
     <ClCompile Include="Core\2DRendering\RectRenderComponent.cpp" />
     <ClCompile Include="Game\Wall.cpp" />
-    <ClCompile Include="Core\Vector2.cpp" />
+    <ClCompile Include="Core\Utilities\Vector2.cpp" />
     <ClCompile Include="Core\2DRendering\SpriteRenderComponent.cpp" />
     <ClCompile Include="Core\2DRendering\Renderer2D.cpp" />
     <ClCompile Include="Core\2DRendering\RenderComponent2D.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Core\Actor.h" />
-    <ClInclude Include="Core\Color.h" />
-    <ClInclude Include="Core\Transform.h" />
+    <ClInclude Include="Core\GameFramework\Actor.h" />
+    <ClInclude Include="Core\Utilities\Color.h" />
+    <ClInclude Include="Core\Utilities\Transform.h" />
     <ClInclude Include="Game\Ball.h" />
-    <ClInclude Include="Core\Component.h" />
+    <ClInclude Include="Core\GameFramework\Component.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="Core\GameObject.h" />
+    <ClInclude Include="Core\GameFramework\GameObject.h" />
     <ClInclude Include="Game\Paddle.h" />
     <ClInclude Include="Core\2DRendering\RectRenderComponent.h" />
     <ClInclude Include="Game\Wall.h" />
-    <ClInclude Include="Core\Vector2.h" />
+    <ClInclude Include="Core\Utilities\Vector2.h" />
     <ClInclude Include="Core\2DRendering\SpriteRenderComponent.h" />
     <ClInclude Include="Core\2DRendering\Renderer2D.h" />
     <ClInclude Include="Core\2DRendering\RenderComponent2D.h" />
+    <ClInclude Include="Core\Input\InputManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

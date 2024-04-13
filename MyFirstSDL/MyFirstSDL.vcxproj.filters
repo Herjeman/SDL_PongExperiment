@@ -21,13 +21,13 @@
     <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Core\GameObject.cpp">
+    <ClCompile Include="Core\GameFramework\GameObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Core\Actor.cpp">
+    <ClCompile Include="Core\GameFramework\Actor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Core\Component.cpp">
+    <ClCompile Include="Core\GameFramework\Component.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Core\2DRendering\RectRenderComponent.cpp">
@@ -42,7 +42,7 @@
     <ClCompile Include="Game\Ball.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Core\Vector2.cpp">
+    <ClCompile Include="Core\Utilities\Vector2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Core\2DRendering\SpriteRenderComponent.cpp">
@@ -54,18 +54,21 @@
     <ClCompile Include="Core\2DRendering\RenderComponent2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Core\Input\InputManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core\GameObject.h">
+    <ClInclude Include="Core\GameFramework\GameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Actor.h">
+    <ClInclude Include="Core\GameFramework\Actor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Component.h">
+    <ClInclude Include="Core\GameFramework\Component.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Core\2DRendering\RectRenderComponent.h">
@@ -80,13 +83,13 @@
     <ClInclude Include="Game\Ball.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Vector2.h">
+    <ClInclude Include="Core\Utilities\Vector2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Transform.h">
+    <ClInclude Include="Core\Utilities\Transform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Color.h">
+    <ClInclude Include="Core\Utilities\Color.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Core\2DRendering\SpriteRenderComponent.h">
@@ -96,6 +99,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Core\2DRendering\RenderComponent2D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Input\InputManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

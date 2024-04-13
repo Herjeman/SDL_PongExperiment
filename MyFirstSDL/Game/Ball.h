@@ -1,5 +1,5 @@
 #pragma once
-#include "Core/Actor.h"
+#include "Core/GameFramework/Actor.h"
 
 class Ball : public Actor
 {

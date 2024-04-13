@@ -1,6 +1,6 @@
 #pragma once
 #include "Core/2DRendering/RenderComponent2D.h"
-#include "Core/Vector2.h"
+#include "Core/Utilities/Vector2.h"
 
 class SpriteRenderComponent : public RenderComponent2D
 {

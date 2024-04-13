@@ -37,14 +37,6 @@ private:
 		return temp;
 	}
 
-	template<class T, typename ... Args>
-	T* AddGameObject(Args... args)
-	{
-		T* temp = new T(this, args...); // <- Do something with perfect forwarding here std::forward<Args>(args) isch? No, maybe just get rid of this completely...
-		m_GameObjects.push_back(temp);
-		return temp;
-	}
-
 	void UpdateGameObjects(float deltaTime);
 	void DrawGameObjects(struct SDL_Renderer* renderer);
 	void RemoveGameObject(class GameObject* object);

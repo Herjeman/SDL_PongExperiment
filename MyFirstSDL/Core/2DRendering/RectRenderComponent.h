@@ -1,6 +1,6 @@
 #pragma once
 #include "Core/2DRendering/RenderComponent2D.h"
-#include "Core/Color.h"
+#include "Core/Utilities/Color.h"
 
 class RectRenderComponent : public RenderComponent2D
 {

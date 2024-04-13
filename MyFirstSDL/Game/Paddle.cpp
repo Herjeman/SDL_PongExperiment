@@ -1,6 +1,7 @@
 #include "Paddle.h"
 #include "Core/2DRendering/RectRenderComponent.h"
 #include "Game.h"
+#include "Core/Input/InputManager.h"
 
 Paddle::Paddle(Game* game) : Actor(game),
 Direction({}), Speed(150)
@@ -24,20 +25,19 @@ void Paddle::Init(int xpos, int ypos, int width, int height, int speed)
 	rect->Color = { 0, 153, 76 };
 }
 
-void Paddle::AddUpInput()
-{
-	Direction.Y--;
-}
-
-void Paddle::AddDownInput()
-{
-	Direction.Y++;
-}
-
 void Paddle::Update(float deltaTime)
 {
-	m_Transform.Position = m_Transform.Position + Direction * Speed * deltaTime;
 	Direction = {};
+	if (InputManager::Get().GetKeyDown(SDL_SCANCODE_UP) || InputManager::Get().GetKeyDown(SDL_SCANCODE_W))
+	{
+		Direction.Y--;
+	}
+	if (InputManager::Get().GetKeyDown(SDL_SCANCODE_DOWN) || InputManager::Get().GetKeyDown(SDL_SCANCODE_S))
+	{
+		Direction.Y++;
+	}
+
+	m_Transform.Position = m_Transform.Position + Direction * Speed * deltaTime;
 
 	FVector2 windowDimensions = GetGame()->GetWindowDimensions();
 	int border = GetGame()->BorderThickness;
