@@ -3,9 +3,7 @@
 #include "SDL_log.h"
 
 Actor::Actor(Game* game) : GameObject(game)
-{
-	SDL_Log("Actor GameObject created");
-}
+{}
 
 Actor::~Actor()
 {
@@ -14,7 +12,6 @@ Actor::~Actor()
 		delete comp;
 	}
 	m_Components.clear();
-	SDL_Log("Actor GameObject destroyed");
 }
 
 void Actor::Update(float deltaTime)
