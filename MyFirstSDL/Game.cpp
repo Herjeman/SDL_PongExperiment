@@ -75,7 +75,7 @@ void Game::Run()
 	Actor* image = AddGameObject<Actor>();
 	image->SetTransform({ {300, 350},{2.f, 2.f}, 0.2});
 
-	AnimatedSpriteComponent* comp = image->AddComponent<AnimatedSpriteComponent>();
+	m_Sprite = image->AddComponent<AnimatedSpriteComponent>();
 	
 	std::vector<std::string> animIDs;
 	animIDs.push_back("Walk1");
@@ -84,10 +84,28 @@ void Game::Run()
 	animIDs.push_back("Walk4");
 	animIDs.push_back("Walk5");
 	animIDs.push_back("Walk6");
+	m_Sprite->AddNewAnimationData("Walk", animIDs);
+	animIDs.clear();
 
-	comp->SetTextureIDs(animIDs);
-	comp->SetTexture(m_AssetManager->GetTexture("Walk1"));
-	comp->SetDrawOrder(16);
+	animIDs.push_back("Jump1");
+	animIDs.push_back("Jump2");
+	animIDs.push_back("Jump3");
+	animIDs.push_back("Jump4");
+	animIDs.push_back("Jump5");
+	animIDs.push_back("Jump6");
+	animIDs.push_back("Jump7");
+	animIDs.push_back("Jump8");
+	animIDs.push_back("Jump9");
+	m_Sprite->AddNewAnimationData("Jump", animIDs);
+	animIDs.clear();
+
+	animIDs.push_back("Punch1");
+	animIDs.push_back("Punch2");
+	animIDs.push_back("Punch3");
+	m_Sprite->AddNewAnimationData("Punch", animIDs);
+
+	m_Sprite->SetAnimation("Punch");
+	m_Sprite->SetDrawOrder(16);
 
 	m_IsRunning = true;
 	while (m_IsRunning)
@@ -100,7 +118,7 @@ void Game::Run()
 	Clean();
 }
 
-void Game::ProcessInput()
+void Game::ProcessInput() // Deprecate this?
 {
 	SDL_Event event;
 	while (SDL_PollEvent(&event))
@@ -118,6 +136,18 @@ void Game::ProcessInput()
 	if (InputManager::Get().GetKeyDown(SDL_SCANCODE_ESCAPE))
 	{
 		m_IsRunning = false;
+	}
+	if (InputManager::Get().GetKeyDown(SDL_SCANCODE_W))
+	{
+		m_Sprite->SetAnimation("Walk");
+	}
+	if (InputManager::Get().GetKeyDown(SDL_SCANCODE_S))
+	{
+		m_Sprite->SetAnimation("Jump");
+	}
+	if (InputManager::Get().GetKeyDown(SDL_SCANCODE_D))
+	{
+		m_Sprite->SetAnimation("Punch");
 	}
 }
 
@@ -231,6 +261,21 @@ void Game::LoadData()
 	textureLoadData.push_back({ "Walk4", "Game/Assets/Character04.png" });
 	textureLoadData.push_back({ "Walk5", "Game/Assets/Character05.png" });
 	textureLoadData.push_back({ "Walk6", "Game/Assets/Character06.png" });
+	
+	textureLoadData.push_back({ "Jump1", "Game/Assets/Character07.png" });
+	textureLoadData.push_back({ "Jump2", "Game/Assets/Character08.png" });
+	textureLoadData.push_back({ "Jump3", "Game/Assets/Character09.png" });
+	textureLoadData.push_back({ "Jump4", "Game/Assets/Character10.png" });
+	textureLoadData.push_back({ "Jump5", "Game/Assets/Character11.png" });
+	textureLoadData.push_back({ "Jump6", "Game/Assets/Character12.png" });
+	textureLoadData.push_back({ "Jump7", "Game/Assets/Character13.png" });
+	textureLoadData.push_back({ "Jump8", "Game/Assets/Character14.png" });
+	textureLoadData.push_back({ "Jump9", "Game/Assets/Character15.png" });
+
+	textureLoadData.push_back({ "Punch1", "Game/Assets/Character16.png" });
+	textureLoadData.push_back({ "Punch2", "Game/Assets/Character17.png" });
+	textureLoadData.push_back({ "Punch3", "Game/Assets/Character18.png" });
+
 	m_AssetManager->LoadTextures(textureLoadData, *m_Renderer2D->GetRenderer());
 }
 
