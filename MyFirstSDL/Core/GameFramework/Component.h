@@ -1,11 +1,13 @@
 #pragma once
+
 class Component
 {
+friend class Actor;
 public:
-	Component(class Actor* owner);
+	Component();
 	virtual ~Component();
-	// To-Do: Add Init function
 	virtual void Update(float deltaTime);
+	virtual void Initialize(){}
 
 	// Getters and Setters
 	int GetUpdateOrder() const { return m_UpdateOrder; }

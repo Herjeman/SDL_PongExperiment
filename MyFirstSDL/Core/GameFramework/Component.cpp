@@ -1,9 +1,9 @@
 #include "Component.h"
 #include "SDL_log.h"
 
-Component::Component(Actor* owner)
+Component::Component()
 {
-	m_Owner = owner;
+	m_Owner = nullptr;
 	m_UpdateOrder = {};
 }
 

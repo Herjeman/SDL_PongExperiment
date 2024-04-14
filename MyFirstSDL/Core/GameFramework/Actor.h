@@ -16,9 +16,10 @@ public:
 	template<typename T>
 	T* AddComponent() {
 
-		T* temp = new T(this);
+		T* temp = new T();
 		m_Components.push_back(temp);
 		m_Components.back()->m_Owner = this;
+		m_Components.back()->Initialize();
 		return temp;
 	}
 

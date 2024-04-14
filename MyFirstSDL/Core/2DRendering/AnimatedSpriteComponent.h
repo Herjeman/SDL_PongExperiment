@@ -24,11 +24,6 @@ struct FAnimationData
 class AnimatedSpriteComponent : public SpriteRenderComponent
 {
 public:
-
-	AnimatedSpriteComponent(class Actor* owner);
-	~AnimatedSpriteComponent(){}
-
-
 	virtual void Update(float deltaTime) override;
 
 	float GetTargetAnimationFrameTime() const { return m_TargetFrameTime; }

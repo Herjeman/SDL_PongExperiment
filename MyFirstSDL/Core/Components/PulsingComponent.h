@@ -4,8 +4,6 @@
 class PulsingComponent : public Component
 {
 public:
-	PulsingComponent(class Actor* owner) : Component(owner){}
-	~PulsingComponent(){}
 	void Update(float deltaTime) override;
 
 	float Speed = 1.0f;

@@ -3,15 +3,6 @@
 #include "SDL_rect.h"
 #include "SDL_render.h"
 
-RectRenderComponent::RectRenderComponent(Actor* owner) : RenderComponent2D(owner),
-	Width(10), Height(10), Color(FColor{255,255,255,255})
-{}
-
-RectRenderComponent::RectRenderComponent(Actor* owner, int width, int height, FColor color) : RenderComponent2D(owner)
-{
-	Init(width, height, color);
-}
-
 void RectRenderComponent::Init(int width, int height, FColor color)
 {
 	Width = width;

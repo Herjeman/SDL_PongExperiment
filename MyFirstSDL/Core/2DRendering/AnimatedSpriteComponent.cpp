@@ -3,9 +3,6 @@
 #include "Game.h"
 #include "Core/AssetManagement/AssetManager.h"
 
-AnimatedSpriteComponent::AnimatedSpriteComponent(Actor* owner) : SpriteRenderComponent(owner)
-{}
-
 void AnimatedSpriteComponent::Update(float deltaTime)
 {
 	m_CurrentFrameElapsedTime += deltaTime * m_AnimationSpeed;

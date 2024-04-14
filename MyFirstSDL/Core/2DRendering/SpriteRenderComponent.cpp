@@ -5,14 +5,6 @@
 #include "SDL.h"
 #include "SDL_image.h"
 
-SpriteRenderComponent::SpriteRenderComponent(Actor* owner) : RenderComponent2D(owner),
-m_Texture(nullptr), m_TextureWidth(0), m_TextureHeight(0)
-{
-}
-
-SpriteRenderComponent::~SpriteRenderComponent()
-{}
-
 void SpriteRenderComponent::Draw(SDL_Renderer* renderer)
 {
 	if (!m_Texture)
