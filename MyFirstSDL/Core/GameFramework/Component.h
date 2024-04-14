@@ -2,9 +2,9 @@
 class Component
 {
 public:
-	Component(class Actor* owner, int updateOrder = 100); // Update priority makes more sense?
+	Component(class Actor* owner);
 	virtual ~Component();
-
+	// To-Do: Add Init function
 	virtual void Update(float deltaTime);
 
 	// Getters and Setters

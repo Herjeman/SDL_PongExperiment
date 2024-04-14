@@ -20,15 +20,6 @@ public:
 		return temp;
 	}
 
-	template<typename T, typename ... Args>
-	T* AddComponent(Args ... args) {
-
-		T* temp = new T(this, args...);
-		m_Components.push_back(temp);
-		return temp;
-	}
-
-
 	void RemoveComponent(class Component* component);
 
 	// Getters and Setters

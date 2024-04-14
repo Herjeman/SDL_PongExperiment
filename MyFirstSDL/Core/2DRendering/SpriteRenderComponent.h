@@ -5,7 +5,7 @@
 class SpriteRenderComponent : public RenderComponent2D
 {
 public:
-	SpriteRenderComponent(class Actor* owner, int updateOrder = 100);
+	SpriteRenderComponent(class Actor* owner);
 	virtual ~SpriteRenderComponent();
 
 	virtual void Draw(SDL_Renderer* renderer) override;

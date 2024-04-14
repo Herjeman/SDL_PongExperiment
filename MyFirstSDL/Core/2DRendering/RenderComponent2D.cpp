@@ -3,8 +3,8 @@
 #include "Renderer2D.h"
 #include "Game.h"
 
-RenderComponent2D::RenderComponent2D(Actor* owner, int updateOrder) : Component(owner, updateOrder),
-m_DrawOrder(updateOrder)
+RenderComponent2D::RenderComponent2D(Actor* owner) : Component(owner),
+m_DrawOrder(0)
 {
 	owner->GetGame()->GetRenderer()->AddRenderComponent(this);
 }

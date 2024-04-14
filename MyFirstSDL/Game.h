@@ -15,9 +15,11 @@ public:
 
 	bool IsRunning();
 
-	struct SDL_Window* GetWindow() { return m_Window; }
-	struct FVector2 GetWindowDimensions();
-	class Renderer2D* GetRenderer() { return m_Renderer2D; }
+	struct SDL_Window* GetWindow() const { return m_Window; }
+	struct FVector2 GetWindowDimensions() const;
+	class Renderer2D* GetRenderer() const { return m_Renderer2D; }
+	class AssetManager* GetAssetManager() const { return m_AssetManager; }
+
 	class Paddle* GetPaddle()const { return m_Paddle; }
 
 	int BorderThickness = 16;

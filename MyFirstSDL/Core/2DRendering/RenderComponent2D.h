@@ -4,7 +4,7 @@
 class RenderComponent2D : public Component
 {
 public:
-	RenderComponent2D(class Actor* owner, int updateOrder);
+	RenderComponent2D(class Actor* owner);
 	virtual ~RenderComponent2D();
 
 	virtual void Draw(struct SDL_Renderer* renderer){}

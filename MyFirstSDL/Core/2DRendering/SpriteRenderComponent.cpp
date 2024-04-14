@@ -5,7 +5,7 @@
 #include "SDL.h"
 #include "SDL_image.h"
 
-SpriteRenderComponent::SpriteRenderComponent(Actor* owner, int updateOrder) : RenderComponent2D(owner, updateOrder),
+SpriteRenderComponent::SpriteRenderComponent(Actor* owner) : RenderComponent2D(owner),
 m_Texture(nullptr), m_TextureWidth(0), m_TextureHeight(0)
 {
 }

@@ -9,6 +9,7 @@
 #include "Core/2DRendering/Renderer2D.h"
 #include "Core/2DRendering/RenderComponent2D.h"
 #include "Core/2DRendering/SpriteRenderComponent.h"
+#include "Core/2DRendering/AnimatedSpriteComponent.h"
 #include "Core/GameFramework/Actor.h"
 #include "Core/AssetManagement/AssetManager.h"
 
@@ -74,8 +75,18 @@ void Game::Run()
 	Actor* image = AddGameObject<Actor>();
 	image->SetTransform({ {300, 350},{2.f, 2.f}, 0.2});
 
-	SpriteRenderComponent* comp = image->AddComponent<SpriteRenderComponent>(150);
-	comp->SetTexture(m_AssetManager->GetTexture("id"));
+	AnimatedSpriteComponent* comp = image->AddComponent<AnimatedSpriteComponent>();
+	
+	std::vector<std::string> animIDs;
+	animIDs.push_back("Walk1");
+	animIDs.push_back("Walk2");
+	animIDs.push_back("Walk3");
+	animIDs.push_back("Walk4");
+	animIDs.push_back("Walk5");
+	animIDs.push_back("Walk6");
+
+	comp->SetTextureIDs(animIDs);
+	comp->SetTexture(m_AssetManager->GetTexture("Walk1"));
 	comp->SetDrawOrder(16);
 
 	m_IsRunning = true;
@@ -178,6 +189,7 @@ void Game::RemoveGameObject(GameObject* object)
 		{
 			m_GameObjects.erase(m_GameObjects.begin() + i);
 			delete object;
+			return;
 		}
 	}
 }
@@ -213,7 +225,12 @@ void Game::LoadData()
 {
 	std::vector<std::tuple<std::string, const char*>> textureLoadData;
 	
-	textureLoadData.push_back({ "id", "Game/Assets/Character01.png"});
+	textureLoadData.push_back({ "Walk1", "Game/Assets/Character01.png"});
+	textureLoadData.push_back({ "Walk2", "Game/Assets/Character02.png" });
+	textureLoadData.push_back({ "Walk3", "Game/Assets/Character03.png" });
+	textureLoadData.push_back({ "Walk4", "Game/Assets/Character04.png" });
+	textureLoadData.push_back({ "Walk5", "Game/Assets/Character05.png" });
+	textureLoadData.push_back({ "Walk6", "Game/Assets/Character06.png" });
 	m_AssetManager->LoadTextures(textureLoadData, *m_Renderer2D->GetRenderer());
 }
 
@@ -222,7 +239,7 @@ bool Game::IsRunning()
 	return m_IsRunning;
 }
 
-FVector2 Game::GetWindowDimensions()
+FVector2 Game::GetWindowDimensions() const
 {
 	int x, y;
 	SDL_GetWindowSize(m_Window, &x, &y);

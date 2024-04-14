@@ -1,10 +1,10 @@
 #include "Component.h"
 #include "SDL_log.h"
 
-Component::Component(Actor* owner, int updateOrder)
+Component::Component(Actor* owner)
 {
 	m_Owner = owner;
-	m_UpdateOrder = updateOrder;
+	m_UpdateOrder = {};
 }
 
 Component::~Component()
