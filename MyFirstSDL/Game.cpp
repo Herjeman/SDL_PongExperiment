@@ -16,11 +16,14 @@
 #include "Game/Wall.h"
 #include "Game/Paddle.h"
 #include "Game/Ball.h"
+#include "Core/Components/PulsingComponent.h"
+#include "Core/Components/SpinningComponent.h"
 
 Game::Game()
 {
-	m_Paddle = {};
-	m_Ball = {};
+	m_Paddle = nullptr;
+	m_Ball = nullptr;
+	m_Skeleton = nullptr;
 }
 
 Game::~Game()
@@ -72,10 +75,9 @@ void Game::Run()
 	m_Ball = AddGameObject<Ball>();
 	m_Ball->GetComponent<RenderComponent2D>()->SetDrawOrder(18);
 
-	Actor* image = AddGameObject<Actor>();
-	image->SetTransform({ {300, 350},{2.f, 2.f}, 0.2});
-
-	m_Sprite = image->AddComponent<AnimatedSpriteComponent>();
+	m_Skeleton = AddGameObject<Actor>();
+	m_Skeleton->SetTransform({ {300, 350},{2.f, 2.f}, 0.2});
+	m_Skeleton->AddComponent<AnimatedSpriteComponent>();
 	
 	std::vector<std::string> animIDs;
 	animIDs.push_back("Walk1");
@@ -84,7 +86,7 @@ void Game::Run()
 	animIDs.push_back("Walk4");
 	animIDs.push_back("Walk5");
 	animIDs.push_back("Walk6");
-	m_Sprite->AddNewAnimationData("Walk", animIDs);
+	m_Skeleton->GetComponent<AnimatedSpriteComponent>()->AddNewAnimationData("Walk", animIDs);
 	animIDs.clear();
 
 	animIDs.push_back("Jump1");
@@ -96,16 +98,19 @@ void Game::Run()
 	animIDs.push_back("Jump7");
 	animIDs.push_back("Jump8");
 	animIDs.push_back("Jump9");
-	m_Sprite->AddNewAnimationData("Jump", animIDs);
+	m_Skeleton->GetComponent<AnimatedSpriteComponent>()->AddNewAnimationData("Jump", animIDs);
 	animIDs.clear();
 
 	animIDs.push_back("Punch1");
 	animIDs.push_back("Punch2");
 	animIDs.push_back("Punch3");
-	m_Sprite->AddNewAnimationData("Punch", animIDs);
+	m_Skeleton->GetComponent<AnimatedSpriteComponent>()->AddNewAnimationData("Punch", animIDs);
 
-	m_Sprite->SetAnimation("Punch");
-	m_Sprite->SetDrawOrder(16);
+	m_Skeleton->GetComponent<AnimatedSpriteComponent>()->SetAnimation("Punch");
+	m_Skeleton->GetComponent<AnimatedSpriteComponent>()->SetDrawOrder(16);
+
+	m_Skeleton->AddComponent<PulsingComponent>();
+	m_Skeleton->AddComponent<SpinningComponent>();
 
 	m_IsRunning = true;
 	while (m_IsRunning)
@@ -137,17 +142,17 @@ void Game::ProcessInput() // Deprecate this?
 	{
 		m_IsRunning = false;
 	}
-	if (InputManager::Get().GetKeyDown(SDL_SCANCODE_W))
+	if (InputManager::Get().GetKeyDown(SDL_SCANCODE_R))
 	{
-		m_Sprite->SetAnimation("Walk");
+		m_Skeleton->GetComponent<AnimatedSpriteComponent>()->SetAnimation("Walk");
 	}
-	if (InputManager::Get().GetKeyDown(SDL_SCANCODE_S))
+	if (InputManager::Get().GetKeyDown(SDL_SCANCODE_F))
 	{
-		m_Sprite->SetAnimation("Jump");
+		m_Skeleton->GetComponent<AnimatedSpriteComponent>()->SetAnimation("Jump");
 	}
 	if (InputManager::Get().GetKeyDown(SDL_SCANCODE_D))
 	{
-		m_Sprite->SetAnimation("Punch");
+		m_Skeleton->GetComponent<AnimatedSpriteComponent>()->SetAnimation("Punch");
 	}
 }
 

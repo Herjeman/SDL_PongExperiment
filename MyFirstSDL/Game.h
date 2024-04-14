@@ -63,6 +63,6 @@ private:
 
 	class Paddle* m_Paddle;
 	class Ball* m_Ball;
-	class AnimatedSpriteComponent* m_Sprite;
+	class Actor* m_Skeleton;
 };
 

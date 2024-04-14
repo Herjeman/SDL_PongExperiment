@@ -5,10 +5,10 @@
 #include <string>
 #include "Core/2DRendering/SpriteRenderComponent.h"
 
-struct AnimationData
+struct FAnimationData
 {
-	AnimationData(){}
-	AnimationData(std::vector<std::string> textureIDs) 
+	FAnimationData(){}
+	FAnimationData(std::vector<std::string> textureIDs) 
 	{
 		TextureIDs = textureIDs;
 	}
@@ -36,13 +36,13 @@ public:
 	void SetTargetFPS(const int FPS);
 	void SetAnimationSpeed(const float speed) { m_AnimationSpeed = speed; }
 	float GetAnimationSpeed() const { return m_AnimationSpeed; }
-	AnimationData* GetAnimationData(const std::string id);
+	FAnimationData* GetAnimationData(const std::string id);
 	void AddNewAnimationData(std::string animationID, std::vector<std::string> textureIDs);
 	void SetAnimation(std::string animationID);
 
 private:
-	AnimationData* m_CurrentAnimation = nullptr;
-	std::unordered_map<std::string, AnimationData> m_AnimationData;
+	FAnimationData* m_CurrentAnimation = nullptr;
+	std::unordered_map<std::string, FAnimationData> m_AnimationData;
 	float m_CurrentFrameElapsedTime = 0;
 	float m_TargetFrameTime = 0.416;
 	float m_AnimationSpeed = 1;

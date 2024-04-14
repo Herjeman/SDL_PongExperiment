@@ -21,7 +21,7 @@ void AnimatedSpriteComponent::SetTargetFPS(const int FPS)
 	m_TargetFrameTime = 1.0f / (float)FPS;
 }
 
-AnimationData* AnimatedSpriteComponent::GetAnimationData(const std::string id)
+FAnimationData* AnimatedSpriteComponent::GetAnimationData(const std::string id)
 {
 	if (m_AnimationData.find(id) != m_AnimationData.end())
 	{
@@ -36,19 +36,19 @@ void AnimatedSpriteComponent::AddNewAnimationData(std::string AnimationID, std::
 	{
 		return;
 	}
-	m_AnimationData[AnimationID] = AnimationData(TextureIDs);
+	m_AnimationData[AnimationID] = FAnimationData(TextureIDs);
 }
 
 void AnimatedSpriteComponent::SetAnimation(std::string animationID)
 {
-	if (AnimationData* animData = GetAnimationData(animationID))
+	if (FAnimationData* animData = GetAnimationData(animationID))
 	{
 		m_CurrentAnimation = animData;
 		SetTexture(GetOwner()->GetGame()->GetAssetManager()->GetTexture(m_CurrentAnimation->TextureIDs[0]));
 	}
 }
 
-std::string AnimationData::GetNextID()
+std::string FAnimationData::GetNextID()
 {
 	AnimIndex++;
 	if (AnimIndex >= TextureIDs.size())

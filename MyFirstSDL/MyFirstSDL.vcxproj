@@ -167,6 +167,8 @@
     <ClCompile Include="Core\2DRendering\SpriteRenderComponent.cpp" />
     <ClCompile Include="Core\2DRendering\Renderer2D.cpp" />
     <ClCompile Include="Core\2DRendering\RenderComponent2D.cpp" />
+    <ClCompile Include="Core\Components\SpinningComponent.cpp" />
+    <ClCompile Include="Core\Components\PulsingComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\2DRendering\AnimatedSpriteComponent.h" />
@@ -186,6 +188,8 @@
     <ClInclude Include="Core\2DRendering\Renderer2D.h" />
     <ClInclude Include="Core\2DRendering\RenderComponent2D.h" />
     <ClInclude Include="Core\Input\InputManager.h" />
+    <ClInclude Include="Core\Components\SpinningComponent.h" />
+    <ClInclude Include="Core\Components\PulsingComponent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
