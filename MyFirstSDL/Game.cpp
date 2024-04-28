@@ -109,8 +109,10 @@ void Game::Run()
 	m_Skeleton->GetComponent<AnimatedSpriteComponent>()->SetAnimation("Punch");
 	m_Skeleton->GetComponent<AnimatedSpriteComponent>()->SetDrawOrder(16);
 
-	m_Skeleton->AddComponent<PulsingComponent>();
-	m_Skeleton->AddComponent<SpinningComponent>();
+	//auto* pulse = m_Skeleton->AddComponent<PulsingComponent>();
+	//pulse->Speed = 1;
+	//auto* spin = m_Skeleton->AddComponent<SpinningComponent>();
+	//spin->Speed = -1.5;
 
 	m_IsRunning = true;
 	while (m_IsRunning)
